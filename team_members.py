@@ -8,8 +8,9 @@ def main():
         Prints the list in a format in the console. 
     """
     team = [
-        {"Name": "Darren Rozario", "Message": "Hi, my name is Darren!"}
-        {"Name": "Curtis", "Message": "Hi im Curtis"}
+        {"Name": "Darren Rozario", "Message": "Hi, my name is Darren!"},
+        {"Name": "Curtis", "Message": "Hi im Curtis"},
+        {"Name: Maya Cantillo", "Message": "Hi, my name is Maya"}
     ]
     
     for members in team:
