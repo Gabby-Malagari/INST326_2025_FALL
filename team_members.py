@@ -10,7 +10,9 @@ def main():
     team = [
         {"Name": "Darren Rozario", "Message": "Hi, my name is Darren!"},
         {"Name": "Curtis", "Message": "Hi im Curtis"},
-        {"Name: Maya Cantillo", "Message": "Hi, my name is Maya"}
+        {"Name: Maya Cantillo", "Message": "Hi, my name is Maya"},
+        {"Name: Gabby Malagari", "Message": "Hi, my name is Gabby"}
+        
     ]
     
     for members in team:
