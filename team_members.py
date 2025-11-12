@@ -25,9 +25,11 @@ def generate_random_event(current_day, player_stats, event_list):
     """
     Input
     """
+    player_stats = #whatever that algs name is
+    
     # Step 1: Choose a random event from the list
     event = random.choice(event_list)
-    print("Day", day)
+    print(f"\nDay" {current_day})
     print("Event", event["description"])
     
     # Step 2: Show player choices
@@ -39,14 +41,14 @@ def generate_random_event(current_day, player_stats, event_list):
     choice_num = int(input("Enter the number of your choice:"))
 
         # Make sure choice is valid
-    while choice_num <1 or choice_num > len(event["choices"]):
-        choice_num = int(input(Invalid choice. Please enter a valid number: "))
+        while choice_num <1 or choice_num > len(event["choices"]):
+        choice_num = int(input("Invalid choice. Please enter a valid number: "))
     chosen  = event["choices"][choice_num - 1]
     print(f"\nYou chose: {chosen['text']}")
 
     # Step 4: Apply the effects to player stats
     for stat, change in chosen["effects"].items():
-        player_stats[stat] = player_state.get(stat, 0) + change
+        player_stats[stat] = player_stats.get(stat, 0) + change
         if player_stats[stat] < 0:
             player_stats[stat] = 0
 
@@ -55,7 +57,7 @@ def generate_random_event(current_day, player_stats, event_list):
     print(f"New Stats: {player_stats}")
     print("-" * 30)
 
-return player_stats
+    return player_stats
     
 if __name__ == "__main__": 
     main()
