@@ -2,7 +2,7 @@ import random
 class Player:
     """Represents the player with the given stats. """
     
-    def __init__(self, health=25, hunger=40, energy=70):
+    def __init__(self, health=70, hunger=40, energy=70):
         """Initializes the player object with included stats.
         
         Args:
