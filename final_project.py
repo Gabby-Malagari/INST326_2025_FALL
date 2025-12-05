@@ -258,25 +258,7 @@ def daily_resource_updates(resources, day_range, characteristics):
             print(f"{resource}: {trend} {abs(amount_changed)} -> Total: {new_amount}")
         
     return resources
-        
-resources = {
-    "wood":{'base value':4, 'growth value':5, 'amount':0},
-    "food":{'base value':10, 'growth value':1.5, 'amount':0},
-    "stone":{'base value':5, 'growth value':2, 'amount':0},
-    "iron":{'base value':0, 'growth value':1.4, 'amount':0} 
-}
 
-characteristics = {
-    "efficiency":4.95,
-    "luck": 2.5,
-    "strength": 3.5
-}
-total_days = 7
-final_resources = daily_resource_updates(resources,total_days,characteristics)
-
-print("\n ---- Final Resource Totals ----")
-for name, values in final_resources.items():
-    print(f"{name}: {values['amount']} units")
 
 ## Algorithm 4
 def survival_check(player_health, day, total_days):
@@ -312,3 +294,28 @@ def survival_check(player_health, day, total_days):
     else:
         print(f"Day {day}: The player has survived another day.")
         return True
+
+def run_island_survivor(total_days):
+    player = Player()
+    player_stats=player.stats
+            
+    resources = {
+        "wood":{'base value':4, 'growth value':5, 'amount':0},
+        "food":{'base value':10, 'growth value':1.5, 'amount':0},
+        "stone":{'base value':5, 'growth value':2, 'amount':0},
+        "iron":{'base value':0, 'growth value':1.4, 'amount':0} 
+    }
+
+    number_list={-3,-2,-1,0,1,2,3,}
+    
+    characteristics = {
+        "efficiency":random.choice(number_list),
+        "luck": random.choice(number_list),
+        "strength": random.choice(number_list)
+    }
+    
+    player_consumables = {
+        "food":3,
+        "water":2.5,
+        "medicine":3.5
+    }
