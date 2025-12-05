@@ -5,3 +5,4 @@ Attribution Table:
 | Method/Function | Primary Author | Techniques Demonstrated|
 |-----------------------------------------------------------|
 | algroithm2.py   | Gabriella Malagari | Sequence Unpacking |
+| algorithm3.py   | John Watkins       | Conditional Expression| 
