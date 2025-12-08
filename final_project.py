@@ -1,4 +1,6 @@
 import random
+import argparse
+
 class Player:
     """Represents the player with the given stats. """
     
@@ -319,3 +321,32 @@ def run_island_survivor(total_days):
         "water":2.5,
         "medicine":3.5
     }
+
+## Gabby'sseconf function
+
+def parse_game_args():
+    parser = argparse.ArgumentParser(description="Island Survivor Game Settings")
+    parser.add_argument("--days", type=int, default=None)
+    parser.add_argument("--difficulty", type=str, default=None,
+                        choices=["easy", "normal", "hard"])
+    return parser.parse_args()
+
+args = parse_game_args()
+
+if args.days is None:
+    total_days = int(input("Enter the number of days you want to play for: "))
+else:
+    total_days = args.days
+
+if args.difficulty is None:
+    difficulty = input("Choose difficulty (easy, normal, hard): ").lower()
+    while difficulty not in ["easy", "normal", "hard"]:
+        difficulty = input("Invalid choice. Choose difficulty (easy, normal, hard): ").lower()
+else:
+    difficulty = args.difficulty
+
+print(f"Game will run for {total_days} days at {difficulty} difficulty.")
+
+if __name__ == "__main__":
+    args = parse_game_args()
+    run_island_survivor(total_days, difficulty)
