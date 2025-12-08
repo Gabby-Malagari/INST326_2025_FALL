@@ -16,9 +16,8 @@
 - Prints messages indicating whether the player lived through the day, completed the full survival run, or died. It then returns a Boolean value that signals whether the game should continue. This file essentially controls the end-of-day outcome logic, ensuring the game can identify win and loss conditions.
 #### **`5. final_project.py `**
 - This brings all our components together and runs the full game.
-#### **` `**
-#### **` `**
-#### **` `**
+#### **`6.team_members.py`**
+#### **`README.md`**
 
 ## How to Run the Program (Windows)
 - Needs to be done
