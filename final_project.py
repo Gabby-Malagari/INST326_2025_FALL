@@ -298,7 +298,7 @@ def survival_check(player_health, day, total_days):
         return True
 
 # Curtis's second function
-def run_island_survivor(total_days):
+def run_island_survivor(total_days,difficulty):
     player = Player()
     player_stats=player.stats
             
@@ -309,7 +309,7 @@ def run_island_survivor(total_days):
         "iron":{'base value':0, 'growth value':1.4, 'amount':0} 
     }
 
-    number_list={-3,-2,-1,0,1,2,3,}
+    number_list=[-3,-2,-1,0,1,2,3,]
     
     characteristics = {
         "efficiency":random.choice(number_list),
@@ -322,6 +322,31 @@ def run_island_survivor(total_days):
         "water":2.5,
         "medicine":3.5
     }
+    for day in range(1, total_days+1):
+        print(f"----DAY {day}----")
+        daily_resource_updates(resources,1,characteristics)
+        generate_random_event(day,player_stats)
+        
+        environment={
+            "weather": random.choice(["clear","cloudy","rain","thunderstorm", 
+                                      "heatwave"]),
+            "temperature": random.randint(50,100)
+        }
+        print("\nChoose actions (seperate via comma):")
+        print("Options: eat, drink, rest, forage, heal")
+        actions = input("Actions: ")
+        actions = [a.strip() for a in actions.split(",")]
+        player.update_survival_stats(player_consumables,actions,environment)
+        
+        warnings = player.check_stat_warning()
+        for w in warnings:
+            print(w)
+        
+        status_check = survival_check(player_stats["health"],day,total_days)
+        if not status_check:
+            return f"you failed to survive the deserted island"
+        else:
+            print("Game over! Congratulations, you survived the deserted island")
 
 ## Gabby'sseconf function
 
