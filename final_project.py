@@ -297,6 +297,7 @@ def survival_check(player_health, day, total_days):
         print(f"Day {day}: The player has survived another day.")
         return True
 
+# Curtis's second function
 def run_island_survivor(total_days):
     player = Player()
     player_stats=player.stats
