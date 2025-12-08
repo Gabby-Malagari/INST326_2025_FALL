@@ -1,5 +1,5 @@
 # Island Survivors
-Authors: John Watkins, Gabby Malagari, Darren Rozario, Maya Cantillo
+**Authors:** John Watkins, Gabby Malagari, Darren Rozario, Maya Cantillo
 
 ## **Repository Contents:**
 #### **`1. algorithm1.py`** 
