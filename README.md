@@ -29,12 +29,12 @@
 ## Attribution Table:
 
 | Method/Function | Primary Author | Techniques Demonstrated|
-|-----------------|----------------|------------------------|
-| algroithm2.py   | Gabriella Malagari | Sequence Unpacking |
-| algorithm3.py   | John Watkins       | F - Strings        | 
-| algorithm1.py   |                    |                    |
-| algorithm4.py   |                    |                    |
-|                 |                    |                    |
-|                 |                    |                    |
-|                 |                    |                    |
-|                 |                    |                    |
+|------------------|--------------------|--------------------|
+| algroithm2.py    | Gabriella Malagari | Sequence Unpacking |
+| algorithm3.py    | John Watkins       | F - Strings        | 
+| algorithm1.py    |                    |                    |
+| algorithm4.py    |                    |                    |
+| parse_game_args()| Gabriella Malagari |ArgumentParser class from the argparse module|
+|                  |                    |                    |
+|                  |                    |                    |
+|                  |                    |                    |
