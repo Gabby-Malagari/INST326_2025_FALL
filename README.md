@@ -1,7 +1,7 @@
 # Island Survivors
 Authors: John Watkins, Gabby Malagari, Darren Rozario, Maya Cantillo
 
-### **Repository Contents:**
+## **Repository Contents:**
 #### **`1. algorithm1.py`** 
 - Contains the core function responsible for updating the player's survival statistics throughout the game. It processes daily changes to the player's health, hunger, and energy, and the applies any efefcts caused by the player's actions, available resources, and environmental changes.
 - Ensures all stats remain within the acceptable ranges (0-100).
@@ -20,11 +20,13 @@ Authors: John Watkins, Gabby Malagari, Darren Rozario, Maya Cantillo
 #### **` `**
 #### **` `**
 
+## How to Run the Program (Windows)
+- Needs to be done
 
+## Annotated Bibliography
+- Needs to be done
 
-
-
-### Attribution Table:
+## Attribution Table:
 
 | Method/Function | Primary Author | Techniques Demonstrated|
 |-----------------|----------------|------------------------|
