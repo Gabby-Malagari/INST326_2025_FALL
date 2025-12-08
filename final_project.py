@@ -174,7 +174,7 @@ def generate_random_event(current_day, player_stats):
     return player_stats
 
 ## Algorithm 3
-def daily_resource_updates(resources, day_range, characteristics):
+def daily_resource_updates(resources, current_day, characteristics):
     """This function updates resources an island survivor has over a multiple
     day survival scenerio. These resources can increase or decrease over these 
     days. This function also uses charactereistics defined in the code, 
@@ -222,42 +222,41 @@ def daily_resource_updates(resources, day_range, characteristics):
                       1.2 * luck_modifier]
     
     # Creating random resource variation for a week long survival scenerio
-    for day in range (1, day_range+1):
-        print(f"\n---- Day {day} resources ----")
-        for resource, values in resources.items():
-            base = values['base value']
-            growth = values['growth value']
+    print(f"\n---- Day {current_day} resources ----")
+    for resource, values in resources.items():
+        base = values['base value']
+        growth = values['growth value']
+        
+        # Creating random fluctuation from previously defined list
+        random_fluctuation = random.choice(fluctuations)
+        # Creating random factors from list above
+        random_factor = random.choice(factors)
+        
+        # making sure the proper modifier is being
+        if resource in ("stone","iron"):
+            characteristic_bonus = strength_modifier
+        else:
+            characteristic_bonus = efficiency_modifier
             
-            # Creating random fluctuation from previously defined list
-            random_fluctuation = random.choice(fluctuations)
-            # Creating random factors from list above
-            random_factor = random.choice(factors)
-            
-            # making sure the proper modifier is being
-            if resource in ("stone","iron"):
-                characteristic_bonus = strength_modifier
-            else:
-                characteristic_bonus = efficiency_modifier
-                
-            # Creating change of losing resources through decay 
-            # (spoiling materials)
-            decay = random.choice([0,-0.05,-0.1,-0.2,-1,-1.5,0.05,0.1])
-            # Calcuating how the resources will change after each day
-            change = ((base+day*growth)*characteristic_bonus*random_factor 
-                      * (1+random_fluctuation+decay))
-            new_amount = max(0,int(values['amount']+change))
-            amount_changed = new_amount-values['amount']
-            values['amount']=new_amount
-            if amount_changed>0:
-                trend = "+"
-            elif amount_changed<0:
-                trend = "-"
-            else:
-                trend = "0"
-            
-            # Printing out all the changes and showing the change in the old
-            # amount and new amount
-            print(f"{resource}: {trend} {abs(amount_changed)} -> Total: {new_amount}")
+        # Creating change of losing resources through decay 
+        # (spoiling materials)
+        decay = random.choice([0,-0.05,-0.1,-0.2,-1,-1.5,0.05,0.1])
+        # Calcuating how the resources will change after each day
+        change = ((base+current_day*growth)*characteristic_bonus*random_factor 
+                    * (1+random_fluctuation+decay))
+        new_amount = max(0,int(values['amount']+change))
+        amount_changed = new_amount-values['amount']
+        values['amount']=new_amount
+        if amount_changed>0:
+            trend = "+"
+        elif amount_changed<0:
+            trend = "-"
+        else:
+            trend = "0"
+        
+        # Printing out all the changes and showing the change in the old
+        # amount and new amount
+        print(f"{resource}: {trend} {abs(amount_changed)} -> Total: {new_amount}")
         
     return resources
 
@@ -324,7 +323,7 @@ def run_island_survivor(total_days,difficulty):
     }
     for day in range(1, total_days+1):
         print(f"----DAY {day}----")
-        daily_resource_updates(resources,1,characteristics)
+        daily_resource_updates(resources,day,characteristics)
         generate_random_event(day,player_stats)
         
         environment={
@@ -346,7 +345,7 @@ def run_island_survivor(total_days,difficulty):
         if not status_check:
             return f"you failed to survive the deserted island"
         else:
-            print("Game over! Congratulations, you survived the deserted island")
+            print(f"Congratulations, you survived the deserted island for {day} days")
 
 ## Gabby'sseconf function
 
