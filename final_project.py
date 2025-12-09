@@ -347,7 +347,62 @@ def run_island_survivor(total_days,difficulty):
         else:
             print(f"Congratulations, you survived the deserted island for {day} days")
 
-## Gabby'sseconf function
+## Maya's 2nd function
+def initialize_metrics():
+    """Create a metrics dictionary used for tracking game stats across runs."""
+    return {
+        "total_runs": 0,
+        "longest_run": 0,
+        "total_days_survived": 0,
+        "average_days_survived": 0.0,
+
+        "water_collected": 0,
+        "food_collected": 0,
+
+        "most_water_in_day": 0,
+        "most_food_in_day": 0,
+    }
+
+def update_survival_metrics(metrics, days_survived):
+    """Update overall survival stats at the end of a run."""
+    metrics["total_runs"] += 1
+    metrics["total_days_survived"] += days_survived
+
+    # update longest survival
+    if days_survived > metrics["longest_run"]:
+        metrics["longest_run"] = days_survived
+
+    # update average survival
+    metrics["average_days_survived"] = (
+        metrics["total_days_survived"] / metrics["total_runs"]
+    )
+
+def record_resources_collected(metrics, water=0, food=0):
+    """Adds collected resources to totals and updates daily max records."""
+    metrics["water_collected"] += water
+    metrics["food_collected"] += food
+    
+    if water > metrics["most_water_in_day"]:
+        metrics["most_water_in_day"] = water
+    if food > metrics["most_food_in_day"]:
+        metrics["most_food_in_day"] = food
+
+def display_metrics(metrics):
+    """Print a summary of recorded game statistics."""
+    print("\n=== GAME STATS ===")
+    print(f"Total Runs Played: {metrics['total_runs']}")
+    print(f"Longest Survival: {metrics['longest_run']} days")
+    print(f"Average Survival: {metrics['average_days_survived']:.2f} days")
+
+    print("\n--- Resource Stats ---")
+    print(f"Water Collected (Total): {metrics['water_collected']}")
+    print(f"Food Collected (Total): {metrics['food_collected']}")
+
+    print("\n--- Daily Maximums ---")
+    print(f"Most Water in a Day: {metrics['most_water_in_day']}")
+    print(f"Most Food in a Day: {metrics['most_food_in_day']}")
+
+## Gabby's second function
 
 def parse_game_args():
     parser = argparse.ArgumentParser(description="Island Survivor Game Settings")
