@@ -33,5 +33,5 @@
 | algorithm4.py    | Maya Cantillo      | F-strings containing expressions |
 | parse_game_args()| Gabriella Malagari |ArgumentParser class from the argparse module|
 | initializing, updating, and printing metrics | Maya Cantillo | Optional parameters and/or keyword arguments |
-|                  |                    |                    |
+|run_island_survivor|John Watkins       |                    |
 |                  |                    |                    |
