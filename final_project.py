@@ -99,7 +99,8 @@ class Player:
         limits = {
             "health": 25,
             "hunger": 75, 
-            "energy": 25
+            "energy": 25,
+            "thirst": 75
         }
         
         # Uses current statistics to detect if the stats are at a dangerous level.
