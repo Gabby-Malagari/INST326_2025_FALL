@@ -133,15 +133,55 @@ def generate_random_event(current_day, player_stats):
     """
 
     # List of possible survival events
-    event_list = [{ 
-                    "description": "You find berries in the forest.",
-                    "choices": [{"text": "Eat them", "effects": {"hunger": -15, "health": -5}},
-                {"text": "Save them for later", "effects": {"hunger": 0}}]},
-        {         "description": "A storm hits unexpectedly.",
-                  "choices": [
-                {"text": "Take shelter", "effects": {"energy": -10}},
-                {"text": "Push forward", "effects": {"health": -10, "energy": -5}} ] } ]
-    
+    event_list = [
+         {"description": "You find some berries in the forest.",
+         "choices": [
+             {"text": "Eat them immediately", "effects": {"hunger": -15, "health": -5}},
+             {"text": "Save them for later", "effects": {"hunger": 0}},
+             {"text": "Share with an animal", "effects": {"hunger": -10, "energy": +5}},
+             {"text": "Ignore them", "effects": {"hunger": +5}} 
+         ]},
+        
+        {"description": "A storm hits unexpectedly.",
+         "choices": [
+             {"text": "Take shelter under a tree", "effects": {"energy": -5, "health": -20}},
+             {"text": "Push through the storm", "effects": {"health": -40, "energy": -40}},
+             {"text": "Find a cave to hide in", "effects": {"energy": -10, "health": 0}},
+             {"text": "Set up a quick tent", "effects": {"energy": -5, "hunger": +0}}
+         ]},
+
+        {"description": "A wild animal blocks your path.",
+         "choices": [
+             {"text": "Try to scare it away", "effects": {"health": -10, "energy": -5}},
+             {"text": "Take a detour around it", "effects": {"energy": -15}},
+             {"text": "Stay calm and wait", "effects": {"energy": -5}},
+             {"text": "Throw some food to distract it", "effects": {"hunger": -5, "health": -2}}
+         ]},
+
+        {"description": "You discover an abandoned campsite.",
+         "choices": [
+             {"text": "Search for useful items", "effects": {"hunger": +0, "energy": +5}},
+             {"text": "Rest for a while", "effects": {"energy": +15, "hunger": +5}},
+             {"text": "Set up camp there for the night", "effects": {"energy": +10, "health": +5}},
+             {"text": "Ignore it and move on", "effects": {"energy": -5, "hunger": +0}}
+         ]},
+        
+        {"description": "You come across a river with murky water.",
+     "choices": [
+         {"text": "Drink the water", "effects": {"thirst": -20, "health": -5}},
+         {"text": "Use a cloth to filter it", "effects": {"thirst": -15, "energy": -5}},
+         {"text": "Look for a safer water source", "effects": {"energy": -10}},
+         {"text": "Ignore it and move on", "effects": {"thirst": +5}}
+     ]},
+
+    {"description": "You hear strange noises at night.",
+     "choices": [
+         {"text": "Investigate the noise", "effects": {"health": -5, "energy": -5}},
+         {"text": "Stay in your shelter", "effects": {"energy": -2}},
+         {"text": "Light a fire to scare animals", "effects": {"energy": -10, "health": +0}},
+         {"text": "Move to a different location", "effects": {"energy": -15, "hunger": +5}}
+     ]}
+]
     # Choose a random event
     event = random.choice(event_list)
     
