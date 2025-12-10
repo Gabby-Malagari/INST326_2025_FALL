@@ -17,7 +17,6 @@
 #### **`5. final_project.py `**
 - This brings all our components together and runs the full game.
 #### **`6.team_members.py`**
-#### **`7. README.md`**
 
 ## How to Run the Program (Windows)
 - Needs to be done
