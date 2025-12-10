@@ -29,9 +29,9 @@
 |------------------|--------------------|--------------------|
 | algroithm2.py    | Gabriella Malagari | Sequence Unpacking |
 | algorithm3.py    | John Watkins       |        | 
-| algorithm1.py    | Darren Rozario     |                    |
+| algorithm1.py    | Darren Rozario     | Dictionary mutation |
 | algorithm4.py    | Maya Cantillo      | F-strings containing expressions |
 | parse_game_args()| Gabriella Malagari |ArgumentParser class from the argparse module|
 | initializing, updating, and printing metrics | Maya Cantillo | Optional parameters and/or keyword arguments |
 |run_island_survivor|John Watkins       |                    |
-|                  |                    |                    |
+| check_stat_warning() | Darren Rozario | List comprehension with filtering |
