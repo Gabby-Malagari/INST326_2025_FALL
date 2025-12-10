@@ -32,7 +32,7 @@
 | algroithm2.py    | Gabriella Malagari | Sequence Unpacking |
 | algorithm3.py    | John Watkins       |        | 
 | algorithm1.py    | Darren Rozario     |                    |
-| algorithm4.py    | Maya Cantillo      |                    |
+| algorithm4.py    | Maya Cantillo      | F-strings containing expressions |
 | parse_game_args()| Gabriella Malagari |ArgumentParser class from the argparse module|
 |                  |                    |                    |
 |                  |                    |                    |
