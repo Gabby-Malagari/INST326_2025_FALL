@@ -30,9 +30,9 @@
 | Method/Function | Primary Author | Techniques Demonstrated|
 |------------------|--------------------|--------------------|
 | algroithm2.py    | Gabriella Malagari | Sequence Unpacking |
-| algorithm3.py    | John Watkins       | F - Strings        | 
-| algorithm1.py    |                    |                    |
-| algorithm4.py    |                    |                    |
+| algorithm3.py    | John Watkins       |        | 
+| algorithm1.py    | Darren Rozario     |                    |
+| algorithm4.py    | Maya Cantillo      |                    |
 | parse_game_args()| Gabriella Malagari |ArgumentParser class from the argparse module|
 |                  |                    |                    |
 |                  |                    |                    |
