@@ -22,8 +22,7 @@
 ## How to Run the Program (Windows)
 - Needs to be done
 
-## Annotated Bibliography
-- Needs to be done
+
 
 ## Attribution Table:
 
