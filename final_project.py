@@ -17,7 +17,7 @@ class Player:
         """
         self.stats = {"health": health, "hunger": hunger, "energy": energy}
         
-
+    ## Algorithm 1
     def update_survival_stats(self, resources, actions, environment):
         """Updates the player's survival stats based on daily cycles,
         player actions, available resources and environmental conditions.
@@ -88,7 +88,7 @@ class Player:
             
         return stats
     
-
+    ## Darren's 2nd Function
     def check_stat_warning(self):
         """Analyzes the player's stats and returns a warning if any values are 
             low.
