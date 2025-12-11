@@ -19,7 +19,10 @@
 #### **`6.team_members.py`**
 
 ## How to Run the Program (Windows)
-- Needs to be done
+- Open up either VS code or your powershell prompt
+- Run the game
+- Enter the amount of days then the difficulty you want to play at
+- Enjoy!
 
 
 
