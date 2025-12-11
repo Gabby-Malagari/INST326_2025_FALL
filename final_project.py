@@ -241,19 +241,17 @@ def daily_resource_updates(resources, current_day, characteristics):
         resources (dict): An updated dictionary with the final total of 
                             resources at the end of the scenerio
     """
-    
+    daily_gains={}
     # getting characteristics from variables defined
     # outside of the function (These are static as of now)
     # if these three are missing then it defaults to the value present here
     efficiency = characteristics.get("efficiency",1)
     luck = characteristics.get("luck",0)
-    strength = characteristics.get("strength",1)
     
     # Creating modifiers tbat will come into play with how resources are
     # generated or reduced
     efficiency_modifier = 1+(efficiency*.05)
     luck_modifier = 1+(luck*.04)
-    strength_modifier = 1+(strength*.06)
     
     # Creating random fluctuation and factor choices for day to day changes
     fluctuations = [-0.5,-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4,0.5]
@@ -274,11 +272,7 @@ def daily_resource_updates(resources, current_day, characteristics):
         # Creating random factors from list above
         random_factor = random.choice(factors)
         
-        # making sure the proper modifier is being
-        if resource in ("stone","iron"):
-            characteristic_bonus = strength_modifier
-        else:
-            characteristic_bonus = efficiency_modifier
+        characteristic_bonus = efficiency_modifier
             
         # Creating change of losing resources through decay 
         # (spoiling materials)
@@ -286,21 +280,21 @@ def daily_resource_updates(resources, current_day, characteristics):
         # Calcuating how the resources will change after each day
         change = ((base+current_day*growth)*characteristic_bonus*random_factor 
                     * (1+random_fluctuation+decay))
-        new_amount = max(0,int(values['amount']+change))
-        amount_changed = new_amount-values['amount']
-        values['amount']=new_amount
-        if amount_changed>0:
-            trend = "+"
-        elif amount_changed<0:
-            trend = "-"
-        else:
-            trend = "0"
+        change = int(change)
+        
+        old_amount = values['amount']
+        values['amount'] += change
+        values['amount'] = max(0, values['amount'])
+        
+        # Record the gain for today
+        daily_gains[resource] = values['amount'] - old_amount
+        trend = "+" if daily_gains[resource]>0 else("-" if daily_gains[resource]<0 else "0")
         
         # Printing out all the changes and showing the change in the old
         # amount and new amount
-        print(f"{resource}: {trend} {abs(amount_changed)} -> Total: {new_amount}")
+        print(f"{resource}: {trend} {abs(daily_gains[resource])} -> Total: {values['amount']}")
         
-    return resources
+    return daily_gains
 
 
 ## Algorithm 4
@@ -401,10 +395,8 @@ def run_island_survivor(total_days,difficulty):
     player_stats=player.stats
             
     resources = {
-        "wood":{'base value':4, 'growth value':5, 'amount':0},
         "food":{'base value':10, 'growth value':1.5, 'amount':0},
-        "stone":{'base value':5, 'growth value':2, 'amount':0},
-        "iron":{'base value':0, 'growth value':1.4, 'amount':0} 
+        "water":{'base value':10, 'growth value':4, 'amount':0}
     }
 
     number_list=[-3,-2,-1,0,1,2,3,]
@@ -429,9 +421,8 @@ def run_island_survivor(total_days,difficulty):
     metrics=initialize_metrics()
     for day in range(1, total_days+1):
         print(f"----DAY {day}----")
-        daily_resource_updates(resources,day,characteristics)
-        food_gained_today = resources["food"]["amount"]
-        record_resources_collected(metrics,water=0,food=food_gained_today)
+        daily_gains = daily_resource_updates(resources,day,characteristics)
+        record_resources_collected(metrics,water=daily_gains.get("water",0),food=daily_gains.get("food",0))
         generate_random_event(day,player_stats)
         
         
@@ -451,11 +442,13 @@ def run_island_survivor(total_days,difficulty):
         
         status_check = survival_check(player_stats["health"],day,total_days)
         if not status_check:
+            update_survival_metrics(metrics,days_survived=day)
+            display_metrics(metrics)
             return f"you failed to survive the deserted island"
         else:
-            print(f"Congratulations, you survived the deserted island for {day} days")
-        update_survival_metrics(metrics,days_survived=day)
-        display_metrics(metrics)
+            update_survival_metrics(metrics,days_survived=day)
+            display_metrics(metrics)
+            print(f"Congratulations, you survived the deserted island for {day} days on {difficulty} difficulty")   
 ## Gabby's second function
 
 def parse_game_args():
