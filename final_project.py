@@ -441,14 +441,11 @@ def run_island_survivor(total_days,difficulty):
             print(w)
         
         status_check = survival_check(player_stats["health"],day,total_days)
-        if not status_check:
-            update_survival_metrics(metrics,days_survived=day)
-            display_metrics(metrics)
-            return f"you failed to survive the deserted island"
-        else:
-            update_survival_metrics(metrics,days_survived=day)
-            display_metrics(metrics)
-            print(f"Congratulations, you survived the deserted island for {day} days on {difficulty} difficulty")   
+        status_message = (f"You did not survive the deserted island" if not 
+                          status_check else f"Congratulations, survived for {day} days on {difficulty} difficulty")
+        print(status_message)
+        update_survival_metrics(metrics,days_survived=day)
+        display_metrics(metrics)   
 ## Gabby's second function
 
 def parse_game_args():
