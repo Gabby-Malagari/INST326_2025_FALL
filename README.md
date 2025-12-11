@@ -28,7 +28,7 @@
 | Method/Function | Primary Author | Techniques Demonstrated|
 |------------------|--------------------|--------------------|
 | algroithm2.py    | Gabriella Malagari | Sequence Unpacking |
-| algorithm3.py    | John Watkins       |        | 
+| algorithm3.py    | John Watkins       | Key Functions max()| 
 | algorithm1.py    | Darren Rozario     | Dictionary mutation |
 | algorithm4.py    | Maya Cantillo      | F-strings containing expressions |
 | parse_game_args()| Gabriella Malagari |ArgumentParser class from the argparse module|
