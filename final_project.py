@@ -4,7 +4,7 @@ import argparse
 class Player:
     """Represents the player with the given stats. """
     
-    def __init__(self, health=70, hunger=40, energy=70):
+    def __init__(self, health=70, hunger=40, energy=70, thirst = 50):
         """Initializes the player object with included stats.
         
         Args:
@@ -15,10 +15,10 @@ class Player:
         Side effects:
             Creates a stats dictionary to store player statistics.
         """
-        self.stats = {"health": health, "hunger": hunger, "energy": energy}
+        self.stats = {"health": health, "hunger": hunger, "energy": energy, "thirst":thirst}
         
     ## Algorithm 1
-    def update_survival_stats(self, resources, actions, environment):
+    def update_survival_stats(self, resources, actions, environment,difficulty_mod):
         """Updates the player's survival stats based on daily cycles,
         player actions, available resources and environmental conditions.
         
@@ -49,12 +49,12 @@ class Player:
         stats = self.stats
 
         # hunger increases everyday while energy decreases
-        stats["hunger"] += 10
-        stats["energy"] -= 5
+        stats["hunger"] += difficulty_mod["hunger_rate"]
+        stats["energy"] -= difficulty_mod["energy_drop"]
         
         # If hunger becomes too high, health declines
         if stats["hunger"] > 80:
-            stats["health"] -= 10
+            stats["health"] -= difficulty_mod["health_penalty"]
             
         # The effects of the environment on the player
         if environment["weather"] == "storm":
@@ -73,6 +73,7 @@ class Player:
             elif action == "drink" and resources.get("water", 0) > 0:
                 resources["water"] -= 1
                 stats["energy"] += 10
+                stats["thirst"] +=15
             elif action == "rest":
                 stats["energy"] += 20
             elif action == "forage":
@@ -419,21 +420,30 @@ def run_island_survivor(total_days,difficulty):
         "water":2.5,
         "medicine":3.5
     }
+    difficulty_settings = {
+        "easy": {"hunger_rate": 4,"energy_drop": 2,"health_penalty": 5},
+        "normal": {"hunger_rate": 8,"energy_drop": 4,"health_penalty": 10},
+        "hard": {"hunger_rate": 15,"energy_drop": 10,"health_penalty": 30}
+    }
+    difficulty_mod = difficulty_settings[difficulty]
+    metrics=initialize_metrics()
     for day in range(1, total_days+1):
         print(f"----DAY {day}----")
         daily_resource_updates(resources,day,characteristics)
+        food_gained_today = resources["food"]["amount"]
+        record_resources_collected(metrics,water=0,food=food_gained_today)
         generate_random_event(day,player_stats)
         
+        
         environment={
-            "weather": random.choice(["clear","cloudy","rain","thunderstorm", 
-                                      "heatwave"]),
+            "weather": random.choice(["storm","heatwave"]),
             "temperature": random.randint(50,100)
         }
         print("\nChoose actions (seperate via comma):")
         print("Options: eat, drink, rest, forage, heal")
         actions = input("Actions: ")
         actions = [a.strip() for a in actions.split(",")]
-        player.update_survival_stats(player_consumables,actions,environment)
+        player.update_survival_stats(player_consumables,actions,environment,difficulty_mod)
         
         warnings = player.check_stat_warning()
         for w in warnings:
@@ -444,6 +454,8 @@ def run_island_survivor(total_days,difficulty):
             return f"you failed to survive the deserted island"
         else:
             print(f"Congratulations, you survived the deserted island for {day} days")
+        update_survival_metrics(metrics,days_survived=day)
+        display_metrics(metrics)
 ## Gabby's second function
 
 def parse_game_args():
