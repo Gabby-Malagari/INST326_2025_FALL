@@ -27,7 +27,7 @@
 - Play by following the prompts and enjoy!
 
 ## Annotated Bibliography
-We made the game up on our own, so we did not use any outside sources.
+We made up the game and all of the functions on our own, so we did not use any outside sources.
 
 ## Attribution Table:
 
