@@ -19,7 +19,7 @@
 #### **`6.team_members.py`**
 
 ## How to Run the Program (Windows)
-- Open up either VS code or your powershell prompt
+- Open up either VS Code or your PowerShell prompt
 - Change into the directory that contains the game file using (cd path/to/folder)
 - Run the game with:
     - python final_project.py
