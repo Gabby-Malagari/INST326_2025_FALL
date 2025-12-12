@@ -338,7 +338,25 @@ def survival_check(player_health, day, total_days):
 
 ## Maya's 2nd function
 def initialize_metrics():
-    """Create a metrics dictionary used for tracking game stats across runs."""
+    """Create a metrics dictionary used for tracking game stats across runs.
+    
+    Returns:
+        dict: A dictionary containing initialized metric fields:
+            - "total_runs" (int): Number of completed runs.
+            - "longest_run" (int): Longest number of days survived in a single run.
+            - "total_days_survived" (int): Combined days survived across all runs.
+            - "average_days_survived" (float): Average days survived per run.
+            - "water_collected" (int): Total water collected across runs.
+            - "food_collected" (int): Total food collected across runs.
+            - "most_water_in_day" (int): Maximum water collected in any single day.
+            - "most_food_in_day" (int): Maximum food collected in any single day.
+
+    Side Effects:
+        None
+
+    Raises:
+        None
+    """
     return {
         "total_runs": 0,
         "longest_run": 0,
@@ -353,7 +371,26 @@ def initialize_metrics():
     }
 
 def update_survival_metrics(metrics, days_survived):
-    """Update overall survival stats at the end of a run."""
+    """Update overall survival stats at the end of a run.
+    
+    Args:
+        metrics (dict): The metrics dictionary to update. Must contain keys:
+            "total_runs", "longest_run", "total_days_survived",
+            and "average_days_survived".
+        days_survived (int): Number of in-game days survived in the run.
+
+    Returns:
+        None: The function modifies the metrics dictionary in place.
+
+    Side Effects:
+        - Mutates the input `metrics` dictionary.
+
+    Raises:
+        KeyError: If expected metric keys are missing from `metrics`.
+        TypeError: If `metrics` is not a dict or `days_survived` is not an integer.
+        ZeroDivisionError: Should not occur during normal use, but could if
+            internal values become inconsistent.
+    """
     metrics["total_runs"] += 1
     metrics["total_days_survived"] += days_survived
 
@@ -367,7 +404,26 @@ def update_survival_metrics(metrics, days_survived):
     )
 
 def record_resources_collected(metrics, water=0, food=0):
-    """Adds collected resources to totals and updates daily max records."""
+    """Adds collected resources to totals and updates daily max records.
+
+    Args:
+        metrics (dict): The metrics dictionary to update. Must include:
+            "water_collected", "food_collected",
+            "most_water_in_day", and "most_food_in_day".
+        water (int, optional): Amount of water collected. Defaults to 0.
+        food (int, optional): Amount of food collected. Defaults to 0.
+
+    Returns:
+        None: Updates the `metrics` dictionary in place.
+
+    Side Effects:
+        - Mutates the input `metrics` dictionary.
+
+    Raises:
+        KeyError: If required resource keys are missing.
+        TypeError: If `metrics` is not a dict or resource values are not integers.
+        ValueError: If `water` or `food` is negative.
+    """
     metrics["water_collected"] += water
     metrics["food_collected"] += food
     
@@ -377,7 +433,24 @@ def record_resources_collected(metrics, water=0, food=0):
         metrics["most_food_in_day"] = food
 
 def display_metrics(metrics):
-    """Print a summary of recorded game statistics."""
+    """Print a summary of recorded game statistics.
+
+    Args:
+        metrics (dict): Dictionary containing all tracked game metrics.
+            Expected keys: "total_runs", "longest_run",
+            "average_days_survived", "water_collected", "food_collected",
+            "most_water_in_day", and "most_food_in_day".
+
+    Returns:
+        None
+
+    Side Effects:
+        - Prints formatted statistics to the console.
+
+    Raises:
+        KeyError: If any expected metric keys are missing.
+        TypeError: If `metrics` is not a dictionary.
+    """
     print("\n=== GAME STATS ===")
     print(f"Total Runs Played: {metrics['total_runs']}")
     print(f"Longest Survival: {metrics['longest_run']} days")
