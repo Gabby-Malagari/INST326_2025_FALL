@@ -15,8 +15,18 @@
 - Determines whether the player survives each day of the game. The function evaluates the player's current health and compares the current day to the total number of required survival days.
 - Prints messages indicating whether the player lived through the day, completed the full survival run, or died. It then returns a Boolean value that signals whether the game should continue. This file essentially controls the end-of-day outcome logic, ensuring the game can identify win and loss conditions.
 #### **`5. final_project.py `**
-- This brings all our components together and runs the full game.
+- This brings all of our components and all of our algorithms together and runs the full game. Also, it has each member's second function/method.
+- Begins with a Player Class that store all of the player's stats (health, hunger, energy, etc.). I acts as the character system for the game.
+- Contains update_survival_stats() that updates the player's stats every day.
+- Contains check_stat_warning() which checks if any of your stats are getting dangerously low and gives warning messages to the player.
+- Contains generate_random_event() which creates the daily event and give sthe player 4 options to choose from. Also, it updates the play's health status.
+- Contains daily_resource_updates() where each day resouces can go up or down depending on luck or what you chose.
+- Contains survival_check() which tells the player if the survived the day.
+- Contains metric functions like total runs played, longest survival, and average days survived.
+- Contains parse_game_args() which reads like a command line argument and allows users to say how may days they want to play for and on what difficulty level.
 #### **`6.team_members.py`**
+- This file is really simple. It's just a small module that prints out each team member's name and a short message. It stores the members in a list of dictionaries, and the loops the team member's name and message they wrote.
+- We  created this file at the beginning to ensure we could all work GitHub and had experience with commit.
 
 ## How to Run the Program (Windows)
 - Open up either VS Code or your PowerShell prompt
