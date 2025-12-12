@@ -20,11 +20,14 @@
 
 ## How to Run the Program (Windows)
 - Open up either VS code or your powershell prompt
-- Run the game
-- Enter the amount of days then the difficulty you want to play at
-- Enjoy!
+- Change into the directory that contains the game file using (cd path/to/folder)
+- Run the game with:
+    - python final_project.py
+- Enter the amount of days and the difficulty you want to play at
+- Play by following the prompts and enjoy!
 
-
+## Annotated Bibliography
+We made the game up on our own, so we did not use any outside sources.
 
 ## Attribution Table:
 
