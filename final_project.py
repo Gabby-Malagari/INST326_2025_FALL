@@ -464,6 +464,15 @@ def run_island_survivor(total_days,difficulty):
 ## Gabby's second function
 
 def parse_game_args():
+    """
+        Parse command-line arguments for the Island Survivor game.
+
+    Returns:
+        argparse.Namespace: An object containing the parsed values for:
+            - days (int or None): The number of in-game days, if provided.
+            - difficulty (str or None): The selected difficulty level
+              ("easy", "normal", or "hard"), if provided.
+    """
     parser = argparse.ArgumentParser(description="Island Survivor Game Settings")
     parser.add_argument("--days", type=int, default=None)
     parser.add_argument("--difficulty", type=str, default=None,
