@@ -238,8 +238,10 @@ def daily_resource_updates(resources, current_day, characteristics):
                                 effects how much wood and food you get. Luck is
                                 a multiplier and affects all resources
     Returns:
-        resources (dict): An updated dictionary with the final total of 
-                            resources at the end of the scenerio
+        daily_gains (dict): An updated dictionary with the total of resources after
+        each day
+    Side Effects:
+        prints daily resource changes and updates the resource dictionary
     """
     daily_gains={}
     # getting characteristics from variables defined
@@ -261,7 +263,7 @@ def daily_resource_updates(resources, current_day, characteristics):
                       1.1 * luck_modifier, 1.15 * luck_modifier,
                       1.2 * luck_modifier]
     
-    # Creating random resource variation for a week long survival scenerio
+    # Creating random resource variation for the survival scenerio
     print(f"\n---- Day {current_day} resources ----")
     for resource, values in resources.items():
         base = values['base value']
@@ -391,6 +393,19 @@ def display_metrics(metrics):
 
 # Curtis's second function
 def run_island_survivor(total_days,difficulty):
+    """The main game function for the island survivor game. This allows us to run
+    the game
+
+    Args:
+        total_days (int): the length the player wants to play the game
+        difficulty (str): determines the difficulty for the game
+                          (easy,normal,hard)
+    Side Effects:
+        - Prints daily game updates,player stats, warnings, and results
+        - Ends game early depending on stats
+        - Runs other functions to help progress the game
+        - Runs the game
+    """
     player = Player()
     player_stats=player.stats
             
